@@ -33,7 +33,7 @@ export default function Home() {
       const data: { repo: string; commits: Commit[] }[] = await response.json();
       setCommits(data.flatMap((r) => r.commits));
       toast.success("Commit data fetched!");
-    } catch (error) {
+    } catch {
       toast.error("Error fetching commits!");
     }
   };
@@ -55,7 +55,7 @@ export default function Home() {
       link.setAttribute("download", `report.${format}`);
       document.body.appendChild(link);
       link.click();
-    } catch (error) {
+    } catch {
       toast.error("Error exporting report!");
     }
   };

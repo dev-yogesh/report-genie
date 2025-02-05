@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import simpleGit from "simple-git";
 
+interface Commit {
+  hash: string;
+  author_name: string;
+  date: string;
+  message: string;
+}
+
 export async function POST(req: Request) {
   try {
     const {
@@ -17,7 +24,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const reports: { repo: string; commits: any[] }[] = [];
+    const reports: { repo: string; commits: Commit[] }[] = [];
 
     for (const path of repoPaths) {
       const git = simpleGit({ baseDir: path });
